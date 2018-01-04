@@ -2,7 +2,7 @@
 The main goal is to make the process of work with [ampy](https://github.com/adafruit/ampy) even simpler and more convenient.  
 Ampyw can do only 2 things:
 1. To put all your python files on the board with a single command (-f argument).
-2. To pass commands to ampy (you don't need to point a port in every command) (-p argument).
+2. To pass commands to ampy (you don't need to point a port in every command) (no arguments).
 ## Prerequisites
 In order to let ampyw define your port automatically, you should edit the first script's line:
 ```
@@ -18,8 +18,8 @@ And make it executable `chmod +x ampyw`
 ./ampyw -f
 ```
 ```
-./ampyw -p rm main.py
+./ampyw rm main.py
 ```
 ```
-./ampyw -p ls
+./ampyw ls
 ```

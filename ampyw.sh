@@ -14,39 +14,30 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 # check arguments
-action=0
-if [ $# -eq 1 ]; then
-    if [[ "$1" == "--flash" || "$1" == "-f" ]]; then
-        action=1
-    elif [[ "$1" == "--pass" || "$1" == "-p" ]]; then
-        echo "--pass command must be followed with ampy command"
-        exit 1;
-    fi
-elif [ $# -gt 1 ]; then
-    if [[ "$1" == "--pass" || "$1" == "-p" ]]; then
-        action=2
-    fi
+flash=0
+if [ $# -eq 1 ] && [[ "$1" == "--flash" || "$1" == "-f" ]]; then
+    flash=1
 fi
 
 # show help
-if [ $# -eq 0 ] || [ $action == 0 ] ; then
-    echo -e "${RED}${bold}ampyw v0.1${normal}${NC}";
+if [ $# -eq 0 ]; then
+    echo -e "${RED}${bold}ampyw v0.11${normal}${NC}";
     echo -e "${GREEN}${bold}Usage:${normal}${NC}";
-    echo "./ampyw.sh [COMMAND]";
+    echo "./ampyw.sh [-f] or [ampy command]";
     echo -e "${GREEN}${bold}Commands:${normal}${NC}";
     echo "--flash or -f = flashes all python files from the folder where this script is located";
-    echo "--pass or -p = passes all following commands directly to ampy";
+    echo "any other commands will be passed directly to ampy";
     echo -e "${GREEN}${bold}Examples:${normal}${NC}";
     echo "./ampyw.sh -f";
-    echo "./ampyw.sh -p ls";
-    echo "./ampyw.sh -p run boot.py";
+    echo "./ampyw.sh ls";
+    echo "./ampyw.sh run boot.py";
     exit 1;
 fi
 
 # pass commands to ampy
-if [ $action == 2 ]; then
-    echo ">> ampy --port ${port} ${@:2}"
-    eval "ampy --port ${port} ${@:2}"
+if [ $flash == 0 ]; then
+    echo ">> ampy --port ${port} ${@:1}"
+    eval "ampy --port ${port} ${@:1}"
     exit
 fi
 
