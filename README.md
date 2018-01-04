@@ -15,11 +15,11 @@ If you use MacOS and [this](https://github.com/adrianmihalko/ch340g-ch34g-ch34x-
 And make it executable `chmod +x ampyw`  
 ## Usage
 ```
-./ampyw -f
+./ampyw.sh -f
 ```
 ```
-./ampyw rm main.py
+./ampyw.sh rm main.py
 ```
 ```
-./ampyw ls
+./ampyw.sh ls
 ```
